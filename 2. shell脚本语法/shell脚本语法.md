@@ -258,3 +258,21 @@ thanlon
 thanlon@thanlon-master:~$ echo $?
 66
 ```
+
+###### 2.8 添加脚本的说明信息
+每次写脚本之前，都重新写一次信息说明，不过这样比较麻烦。我们可以打开一个以.sh结尾的新文件时，自动添加这些说明信息。具体操作如下：
+```shell
+# 编辑配置文件，我这里用的是ubuntu示例
+thanlon@thanlon-master:~$ sudo vim /etc/vim/vimrc
+# 在文件末尾添加下面的内容
+autocmd BufNewFile *.sh exec ":call MESS()"
+func MESS()
+        call append(0,"#!/usr/bin/bash")
+        call append(1,"#Description：")
+        call append(2,"#Author: thanlon@sina.com")
+        call append(3,"#Realease：1.0")
+        call append(4,"#Create Time：".strftime("%Y/%m/%d %H:%M"))
+endfunc
+```
+这样每次新建文件，这些信息就会被自动加入：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200412105453517.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoYW5sb24=,size_16,color_FFFFFF,t_70)
