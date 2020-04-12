@@ -126,3 +126,40 @@ thanlon
 thanlon@thanlon-master:~$ echo ${ass_array2[age]}
 23
 ```
+
+###### 6.4 职员信息查询系统
+`employee_info.sh：`
+```shell
+#!/usr/bin/bash
+#Description：
+#Author: thanlon@sina.com
+#Realease：1.0
+#Create Time：2020/04/12 12:37
+for((i=0;i<3;i++))
+        do
+                read -p "输入第$((i+1))个职员的人名：" employee_name[$i]
+                read -p "输入第$[$i+1]个的职员年龄：" employee_age[$i]
+                read -p "输入第`expr $i + 1`个职员的性别：" employee_gender[$i]
+                echo
+done
+clear
+echo -e "\t\t\t\t职员信息查询系统"
+echo "友情提示：输入Q可以直接退出系统！"
+while :
+        do
+                read -p "输入要查询的职员的姓名：" name
+                [ $name == "Q" ]&& exit
+                flag=0
+                for((i=0;i<3;i++))
+                        do
+                                if [ "$name" == "${employee_name[$i]}" ];then
+                                        echo "职员姓名：${employee_name[$i]} 职员年龄：${employee_age[$i]} 职员性别：${employee_gender[$i]}"
+                                        flag=1
+                                fi
+                done
+                [ $flag -eq 0 ]&&echo "抱歉，没有找到该职员！"
+                echo
+done
+```
+`执行过程：`
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200412134830817.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoYW5sb24=,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/20200412134928175.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RoYW5sb24=,size_16,color_FFFFFF,t_70)
