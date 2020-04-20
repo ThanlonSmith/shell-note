@@ -1,0 +1,77 @@
+##### 14. until循环
+###### 14.1 until介绍
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;与while相反，until是当条件为假的时候才执行，条件为真则停止执行。
+###### 14.2 until语法
+```shell
+until [ condition ] # 注意条件为假until才会循环，条件为真，until停止循环
+do
+    代码块
+done
+```
+###### 14.3 until案例
+**`until01.sh：`**
+```shell
+#!/usr/bin/bash
+#Description：until案例1
+#Author: thanlon@sina.com
+#Realease：1.0
+#Create Time：2020/04/20 18:59
+
+num=10
+until [ $num -gt 20 ];do
+    echo $num
+    num=$((num+1))
+    sleep 0.5
+done
+```
+`执行过程:`
+```shell
+thanlon@thanlon-master:~$ bash until01.sh 
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+```
+**`until02.sh：`**
+```shell
+#!/usr/bin/bash
+#Description：while与until综合应用，数字接龙
+#Author: thanlon@sina.com
+#Realease：1.0
+#Create Time：2020/04/20 18:59
+
+num=1
+while [ $num -lt 5 ];do
+    echo $num
+    sleep 0.1
+    num=$((num+1))
+    until [ $num -lt 5 ];do
+        echo $num
+        sleep 0.1
+        if [ $num -eq 9 ];then
+            break
+        fi
+        num=$((num+1))
+    done
+done
+```
+**`执行过程:`**
+```shell
+thanlon@thanlon-master:~$ bash until02.sh 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+```
